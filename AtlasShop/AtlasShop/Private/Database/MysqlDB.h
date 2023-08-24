@@ -9,7 +9,7 @@
 class MySql : public IDatabase
 {
 public:
-	explicit MySql(std::string server, std::string username, std::string password, std::string db_name)
+	explicit MySql(std::string server, std::string username, std::string password, std::string db_name, const int port)
 	{
 		try
 		{
@@ -20,6 +20,7 @@ public:
 			options.dbname = move(db_name);
 			options.autoreconnect = true;
 			options.timeout = 30;
+			options.port = port;
 
 			bool result = db_.open(options);
 			if (!result)
